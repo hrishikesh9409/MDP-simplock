@@ -1,3 +1,6 @@
+This is a case study of MDP model Simplock ransomware using Storm and Stormpy bindings. The code to analyse simplock mdp model is given in the simpLock folder. The dependencies to install are given in the Storm and Stormpy homepage respectively. 
+
+
 Stormpy - Python bindings for Storm
 ===================================
 
@@ -17,3 +20,5 @@ Stormpy depends on [pycarl](https://github.com/moves-rwth/pycarl/).
 
 - Sebastian Junges
 - Matthias Volk
+
+
