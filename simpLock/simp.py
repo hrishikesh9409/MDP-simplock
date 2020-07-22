@@ -3,7 +3,6 @@ import stormpy.info
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 prism_program = stormpy.parse_prism_program("simp.nm")
 print("\n")
 print(prism_program.model_type)
@@ -40,35 +39,49 @@ while(i < number):
 	re.append(result.at(initial_state))
 	i += 1
 
+# #Rmax : 
+# j=0
+# while(j < len(re)):
+# 	if(re[j] == np.inf):
+# 		re[j] = 0
+# 	elif(re[j] == 0):
+# 		re[j] = 0
+# 	j += 1
 
-j=0
-while(j < len(re)):
-	if(re[j] == np.inf):
-		re[j] = 0
-	j += 1
+# #Pmax : 
+# # j=0
+# # while(j < len(re)):
+# # 	if(re[j] == 0):
+# # 		re[j] = 1
+# # 	j += 1
 
+plt.title("Total Steps to reach States")
 plt.plot(re)
+plt.axvline(x=51, color="r", label="infected state")
+#plt.text(111.3,0,'infected state',rotation=90)
+plt.axvline(x=21, color="g", label="root access control")
 plt.xlabel('states')
 plt.ylabel('steps')
 plt.axis([0, number, 0, 15])
-plt.legend(["steps"], loc ="upper right") 
+# plt.xticks(list(range(0,number,15)) + [10, 28])
+plt.legend(["steps", "infected state", "root access control"], loc ="upper right") 
 plt.show()
 
 #exploring model
-# i=0
-# while(i < number):
-# 	state = model.states[i]
-# 	state_vals = model.state_valuations
-# 	#print(state_vals.get_string(state.id))
-# 	print("\nState {} with variable values: {}" .format(state, state_vals.get_string(state.id)))
-# 	choice_labels = model.choice_labeling
-# 	# print()
-# 	# print(choice_labels)
-# 	for action in state.actions:
-# 		for transition in action.transitions:
-# 			print("With action {} and probability {}, go to state {} {}" .format(choice_labels.get_labels_of_choice(action.id+3), transition.value(), transition.column, state_vals.get_string(transition.column)))
-# 			if transition.column > 10: break
+i=0
+while(i < number):
+	state = model.states[i]
+	state_vals = model.state_valuations
+	#print(state_vals.get_string(state.id))
+	print("\nState {} with variable values: {}" .format(state, state_vals.get_string(state.id)))
+	choice_labels = model.choice_labeling
+	# print()
+	# print(choice_labels)
+	for action in state.actions:
+		for transition in action.transitions:
+			print("With action {} and probability {}, go to state {} {}" .format(choice_labels.get_labels_of_choice(action.id+3), transition.value(), transition.column, state_vals.get_string(transition.column)))
+			if transition.column > 10: break
 
-# 	i += 1
+	i += 1
 
 print()
